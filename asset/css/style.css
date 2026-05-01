@@ -248,3 +248,7 @@ h1 {
         display: none;
     }
 }
+
+.pos-section {
+    display: none;
+}
