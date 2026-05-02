@@ -16,6 +16,17 @@ export const CustomerModel = {
         return customer;
     },
 
+    updateCustomer(id, colIndex, value) {
+        let customer = customer_db.find(c => c.customer_id === id);
+        if (!customer) return;
+        switch (colIndex) {
+            case 1: customer._customer_name = value; break;
+            case 2: customer._contact = value; break;
+            case 3: customer._email = value; break;
+            case 4: customer._address = value; break;
+        }
+    },
+
     getAllCustomers() {
         return customer_db;
     }

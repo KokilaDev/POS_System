@@ -3,12 +3,13 @@ import { CustomerModel } from "../model/CustomerModel.js";
 $(document).ready(function () {
     $('#customerId').text(CustomerModel.generateCustomerId());
     loadCustomerTable();
+    $(this).trigger($.Event('keypress', { key: 'Enter' }));
 });
 
 function loadCustomerTable() {
-    let tablebody = $('#customer_tbody');
+    let tableBody = $('#customer_tbody');
 
-    tablebody.empty();
+    tableBody.empty();
     CustomerModel.getAllCustomers().forEach((customer, index) => {
         let row = `
             <tr data-index="${index}">
@@ -18,7 +19,7 @@ function loadCustomerTable() {
                 <td>${customer._email}</td>
                 <td>${customer._address}</td>
             </tr>`;
-        tablebody.append(row);
+        tableBody.append(row);
     });
 
     $('#customer_tbody tr').click(function () {
@@ -36,6 +37,30 @@ function loadCustomerTable() {
 
         clearValidation();
     });
+
+    tableBody.on('dblclick', 'td', function () {
+        if ($(this).index() === 0) return;
+        let value = $(this).text();
+        $(this).html(`<input type="text" class="edit" value="${value}">`);
+        $(this).find('input').focus();
+    })
+
+    tableBody.on('keypress', '.edit', function (e) {
+        if (e.key === "Enter") {
+            let input = $(this);
+            let newValue = input.val();
+
+            let cell = input.closest('td');
+            let row = cell.closest('tr');
+
+            let id = row.find('td:eq(0)').text();
+            let colIndex = cell.index();
+
+            CustomerModel.updateCustomer(id, colIndex, newValue);
+
+            input.parent().text(newValue);
+        }
+    })
 }
 
 $('#customer_save_btn').on('click', function () {
