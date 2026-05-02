@@ -93,24 +93,67 @@
         </aside>
 
         <main id="dashboard_content" class="main-content tab-content">
-            <h1>This is a dashboard content</h1>
+            <div class="dashboard-grid">
+                <div class="stat-card primary">
+                    <div class="stat-header">
+                        <div class="stat-title">Total Revenue</div>
+                        <div class="stat-icon primary"><i class="fas fa-dollar-sign"></i></div>
+                    </div>
+                    <div class="stat-value" id="total_revenue"><span>Rs.</span>0.00</div>
+                    <div class="stat-change positive">
+                        <i class="fas fa-arrow-up"></i><span>0% from last month</span>
+                    </div>
+                </div>
+                <div class="stat-card secondary">
+                    <div class="stat-header">
+                        <div class="stat-title">Total Customers</div>
+                        <div class="stat-icon secondary"><i class="fas fa-users"></i></div>
+                    </div>
+                    <div class="stat-value" id="total_customers">0</div>
+                    <div class="stat-change positive">
+                        <i class="fas fa-arrow-up"></i><span>0% from last month</span>
+                    </div>
+                </div>
+                <div class="stat-card success">
+                    <div class="stat-header">
+                        <div class="stat-title">Total Orders</div>
+                        <div class="stat-icon success"><i class="fas fa-shopping-bag"></i></div>
+                    </div>
+                    <div class="stat-value" id="total_orders">0</div>
+                    <div class="stat-change positive">
+                        <i class="fas fa-arrow-up"></i><span>0% from last month</span>
+                    </div>
+                </div>
+                <div class="stat-card warning">
+                    <div class="stat-header">
+                        <div class="stat-title">Low Stock Products</div>
+                        <div class="stat-icon warning">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value" id="low-item">-</div>
+                    <div class="stat-change negative" id="low-item-info">
+                        <i class="fas fa-arrow-down"></i><span>No low-stock items</span>
+                    </div>
+                </div>
+            </div>
         </main>
 
-        <main id="customer_content" class="main-content tab-content">
-            <h1>This is a customer content</h1>
-        </main>
+<!--        <main id="customer_content" class="main-content tab-content">-->
+<!--            <h1>This is a customer content</h1>-->
+<!--        </main>-->
 
-        <main id="item_content" class="main-content tab-content">
-            <h1>This is an item content</h1>
-        </main>
+<!--        <main id="item_content" class="main-content tab-content">-->
+<!--            <h1>This is an item content</h1>-->
+<!--        </main>-->
 
-        <main  id="cart_content" class="main-content tab-content">
-            <h1>This is a cart content</h1>
-        </main>
+<!--        <main  id="cart_content" class="main-content tab-content">-->
+<!--            <h1>This is a cart content</h1>-->
+<!--        </main>-->
 
-        <main id="order_content" class="main-content tab-content">
-            <h1>This is an order content</h1>
-        </main>
+<!--        <main id="order_content" class="main-content tab-content">-->
+<!--            <h1>This is an order content</h1>-->
+<!--        </main>-->
     </div>
 </div>
 

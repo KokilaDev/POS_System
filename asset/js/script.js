@@ -53,7 +53,7 @@ const tabs = {
 };
 
 $('.tab-content').hide();
-$('#dashboard-content').show();
+$('#dashboard_content').show();
 
 $('#dashboard_tab').on('click', function () { showTab('dashboard'); });
 $('#customer_tab').on('click', function () { showTab('customer'); });
