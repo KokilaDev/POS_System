@@ -46,12 +46,6 @@ $(document).ready(function () {
     loadChart();
 
     $('.configToggle').click(() => $('.config').toggleClass("open"));
-
-    $('.searchInput').on('keyup', function () {
-        let value = $(this).val().toLowerCase();
-        highlightRows('#customer_tbody', 3, value);
-        highlightRows('#item_tbody', 1, value);
-    });
 });
 
 const tabs = {

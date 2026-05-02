@@ -823,16 +823,27 @@ h1 {
     border-collapse: collapse;
 }
 
-.table th,
-.table td {
+.table th {
     border-bottom: 1px dashed rgba(255, 255, 255, 0.45);
     padding: 10px;
     text-align: left;
 }
+
+.table td {
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.45);
+    text-align: left;
+}
+
 .table th {
     font-size: 13px;
     text-transform: uppercase;
     letter-spacing: 0.08em;
+    color: #5b6470;
+}
+
+.table td {
+    font-size: 13px;
+    font-weight: bold;
     color: #5b6470;
 }
 

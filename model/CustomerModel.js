@@ -27,6 +27,10 @@ export const CustomerModel = {
         }
     },
 
+    deleteCustomer(index) {
+        customer_db.splice(index, 1);
+    },
+
     getAllCustomers() {
         return customer_db;
     }
