@@ -540,3 +540,126 @@ h1 {
 .stat-change i {
     margin-right: 0.25rem;
 }
+
+.charts-section {
+    display: flex;
+    gap: 20px;
+}
+
+.chart {
+    background: #fff;
+    flex: 1;
+    padding: 20px;
+    border-radius: 8px;
+    height: 375px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+}
+
+.category-table {
+    width: 100%;
+    margin-top: 10px;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.category-table thead {
+    background: #f7f9fb;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.category-table tbody {
+    display: block;
+    max-height: 230px;
+    overflow-y: auto;
+}
+
+.category-table thead,
+.category-table tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.category-table thead {
+    background: #f7f9fb;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+.category-table th,
+.category-table td {
+    text-align: start;
+    font-size: 15px;
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.category-table th {
+    color: #333;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.category-table tr:hover , .category-table tr:focus {
+    background-color: var(--sidebar-active);
+}
+
+.category-table tr.active {
+    background-color: var(--sidebar-active);
+}
+
+@media (max-width: 1200px) {
+    .dashboard-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 992px) {
+    .sidebar {
+        transform: translateX(-100%);
+    }
+
+    .sidebar-collapsed {
+        transform: translateX(0);
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+
+    .menu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .close-sidebar {
+        display: block;
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .header {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .main-content {
+        padding: 1rem;
+    }
+
+    .header-actions {
+        gap: 0.5rem;
+    }
+}

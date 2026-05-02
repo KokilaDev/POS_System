@@ -42,6 +42,8 @@ $(document).ready(function () {
         $('#pos-section').hide();
         console.log('Logged out!');
     });
+
+    loadChart();
 });
 
 const tabs = {
@@ -67,4 +69,20 @@ function showTab(tabName) {
 
     $('.sidebar-nav-item').removeClass('active');
     $(`#${tabName}_tab`).addClass('active');
+}
+
+function loadChart() {
+    const ctx = $('#salesChart')[0].getContext('2d');
+
+    const salesChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+            datasets: [{
+                label: 'Orders',
+                data: [5, 8, 6, 7, 4],
+                backgroundColor: 'rgba(54, 162, 235, 0.6)'
+            }]
+        }
+    });
 }

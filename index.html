@@ -137,28 +137,56 @@
                     </div>
                 </div>
             </div>
+
+            <div class="charts-section">
+                <div class="chart" id="sales-chart">
+                    <div>Sales</div>
+                    <canvas id="salesChart"></canvas>
+                </div>
+                <div class="chart" id="categoryChart">
+                    <div>Categories</div>
+                    <table id="categoryTable" class="category-table">
+                        <thead>
+                        <tr>
+                            <th>Category Name</th>
+                            <th>Number of Items</th>
+                        </tr>
+                        </thead>
+                        <tbody id="category-table-body">
+                        <tr><td>Fruits & Vegetables</td><td id="count-fruits">0</td></tr>
+                        <tr><td>Dairy & Eggs</td><td id="count-dairy">0</td></tr>
+                        <tr><td>Beverages</td><td id="count-beverages">0</td></tr>
+                        <tr><td>Snacks & Confectionery</td><td id="count-snacks">0</td></tr>
+                        <tr><td>Household Essentials</td><td id="count-household">0</td></tr>
+                        <tr><td>Grains & Pulses</td><td id="count-grains">0</td></tr>
+                        <tr><td>Spices & Seasonings</td><td id="count-spices">0</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </main>
 
-<!--        <main id="customer_content" class="main-content tab-content">-->
-<!--            <h1>This is a customer content</h1>-->
-<!--        </main>-->
+        <main id="customer_content" class="main-content tab-content">
+            <h1>This is a customer content</h1>
+        </main>
 
-<!--        <main id="item_content" class="main-content tab-content">-->
-<!--            <h1>This is an item content</h1>-->
-<!--        </main>-->
+        <main id="item_content" class="main-content tab-content">
+            <h1>This is an item content</h1>
+        </main>
 
-<!--        <main  id="cart_content" class="main-content tab-content">-->
-<!--            <h1>This is a cart content</h1>-->
-<!--        </main>-->
+        <main  id="cart_content" class="main-content tab-content">
+            <h1>This is a cart content</h1>
+        </main>
 
-<!--        <main id="order_content" class="main-content tab-content">-->
-<!--            <h1>This is an order content</h1>-->
-<!--        </main>-->
+        <main id="order_content" class="main-content tab-content">
+            <h1>This is an order content</h1>
+        </main>
     </div>
 </div>
 
 <script src="asset/lib/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
 <script src="asset/js/script.js"></script>
