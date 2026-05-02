@@ -411,3 +411,18 @@ h1 {
     color: white;
     border-color: var(--secondary);
 }
+
+.main-content {
+    flex: 1;
+    min-height: 90vh;
+    margin-left: 260px;
+    padding-bottom: 1rem !important;
+    padding: 1.5rem;
+    transition: var(--transition);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.main-content-expanded {
+    margin-left: 0;
+}
