@@ -44,6 +44,8 @@ $(document).ready(function () {
     });
 
     loadChart();
+
+    $('#configToggle').click(() => $('.config').toggleClass("open"));
 });
 
 const tabs = {

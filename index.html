@@ -167,7 +167,42 @@
         </main>
 
         <main id="customer_content" class="main-content tab-content">
-            <h1>This is a customer content</h1>
+            <div class="config">
+                <div class="panel">
+                    <h3 style="margin-bottom: 6px;">New customer</h3>
+                    <div class="form-label id">
+                        Customer ID : <span id="customerId"></span>
+                    </div>
+                    <div class="customer-details">
+                        <label class="form-input">Customer name <input type="text" name="customerName" id="customerName"></label>
+                        <label class="form-input">Address <input type="text" name="address" id="address"></label>
+                        <label class="form-input">Contact <input type="text" name="contact" id="contact"></label>
+                        <label class="form-input">Email <input type="text" name="email" id="email"></label>
+                    </div>
+                    <div class="buttons" style="margin-top: 12px;">
+                        <button type="button" class="btn btn-success" id="customer_save_btn">Save</button>
+                        <button type="button" class="btn btn-primary" id="customer_update_btn">Update</button>
+                        <button type="button" class="btn btn-danger" id="customer_delete_btn">Delete</button>
+                        <button type="button" class="btn btn-warning" id="customer_reset_btn">Clear</button>
+                    </div>
+                </div>
+                <button id="configToggle" class="fab"><i class="fa-solid fa-plus"></i> Add new customer</button>
+            </div>
+
+            <div class="card">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Customer ID</th>
+                        <th>Customer Name</th>
+                        <th>Address</th>
+                        <th>Contact No</th>
+                        <th>Email</th>
+                    </tr>
+                    </thead>
+                    <tbody id="customer_tbody"></tbody>
+                </table>
+            </div>
         </main>
 
         <main id="item_content" class="main-content tab-content">
