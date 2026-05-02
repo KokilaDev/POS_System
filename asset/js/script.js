@@ -45,23 +45,12 @@ $(document).ready(function () {
 
     loadChart();
 
-    $('#configToggle').click(() => $('.config').toggleClass("open"));
+    $('.configToggle').click(() => $('.config').toggleClass("open"));
 
-    $('#searchInput').on('keyup', function () {
-
+    $('.searchInput').on('keyup', function () {
         let value = $(this).val().toLowerCase();
-
-        $('#customer_tbody tr').each(function () {
-
-            let contact = $(this).find('td:eq(3)').text().toLowerCase();
-
-            $(this).removeClass('highlight');
-
-            if (contact.includes(value) && value !== "") {
-                $(this).addClass('highlight');
-            }
-        });
-
+        highlightRows('#customer_tbody', 3, value);
+        highlightRows('#item_tbody', 1, value);
     });
 });
 
@@ -102,6 +91,16 @@ function loadChart() {
                 data: [5, 8, 6, 7, 4],
                 backgroundColor: 'rgba(54, 162, 235, 0.6)'
             }]
+        }
+    });
+}
+
+function highlightRows(tableId, columnIndex, value) {
+    $(tableId + ' tr').each(function () {
+        let text = $(this).find(`td:eq(${columnIndex})`).text().toLowerCase();
+        $(this).removeClass('highlight');
+        if (text.includes(value) && value !== "") {
+            $(this).addClass('highlight');
         }
     });
 }

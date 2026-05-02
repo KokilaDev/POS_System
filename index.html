@@ -168,15 +168,16 @@
 
         <main id="customer_content" class="main-content tab-content">
             <div class="search-box">
-                <input type="text" id="searchInput" placeholder="Search here...">
+                <input type="text" class="searchInput" placeholder="Search here...">
             </div>
+
             <div class="config">
                 <div class="panel">
                     <h3 style="margin-bottom: 6px;">New customer</h3>
                     <div class="form-label id">
                         Customer ID : <span id="customerId"></span>
                     </div>
-                    <div class="customer-details">
+                    <div class="details">
                         <label class="form-input">Customer name <input type="text" name="customerName" id="customerName"></label>
                         <label class="form-input">Address <input type="text" name="address" id="address"></label>
                         <label class="form-input">Contact <input type="text" name="contact" id="contact"></label>
@@ -189,11 +190,11 @@
                         <button type="button" class="btn btn-warning" id="customer_reset_btn">Clear</button>
                     </div>
                 </div>
-                <button id="configToggle" class="fab"><i class="fa-solid fa-plus"></i> Add new customer</button>
+                <button class="configToggle fab"><i class="fa-solid fa-plus"></i> Add new customer</button>
             </div>
 
             <div class="card">
-                <table>
+                <table class="table">
                     <thead>
                     <tr>
                         <th>Customer ID</th>
@@ -209,7 +210,58 @@
         </main>
 
         <main id="item_content" class="main-content tab-content">
-            <h1>This is an item content</h1>
+            <div class="search-box">
+                <input type="text" class="searchInput" placeholder="Search here...">
+            </div>
+
+            <div class="config">
+                <div class="panel">
+                    <h3 style="margin-bottom: 6px;">New item</h3>
+                    <div class="form-label id">
+                        Item ID : <span id="itemId"></span>
+                    </div>
+                    <div class="details">
+                        <label class="form-input">Item name <input type="text" name="itemName" id="itemName"></label>
+                        <label class="form-input">Unit price <input type="text" name="unitPrice" id="unitPrice"></label>
+                        <label class="form-input">Quantity <input type="text" name="quantity" id="quantity"></label>
+                        <label class="form-input">
+                            Category
+                            <select name="category" id="category">
+                                <option value="" disabled selected hidden> Select Category </option>
+                                <option value="Fruits & Vegetables">Fruits & Vegetables</option>
+                                <option value="Dairy & Eggs">Dairy & Eggs</option>
+                                <option value="Beverages">Beverages</option>
+                                <option value="Snacks & Confectionery">Snacks & Confectionery</option>
+                                <option value="Household Essentials">Household Essentials</option>
+                                <option value="Grains & Pulses">Grains & Pulses</option>
+                                <option value="Spices & Seasonings">Spices & Seasonings</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="buttons" style="margin-top: 12px;">
+                        <button type="button" class="btn btn-success" id="item_save_btn">Save</button>
+                        <button type="button" class="btn btn-primary" id="item_update_btn">Update</button>
+                        <button type="button" class="btn btn-danger" id="item_delete_btn">Delete</button>
+                        <button type="button" class="btn btn-warning" id="item_reset_btn">Clear</button>
+                    </div>
+                </div>
+                <button class="configToggle fab"><i class="fa-solid fa-plus"></i> Add new item</button>
+            </div>
+
+            <div class="card">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Item ID</th>
+                        <th>Item Name</th>
+                        <th>Unit Price</th>
+                        <th>Quantity</th>
+                        <th>Category</th>
+                    </tr>
+                    </thead>
+                    <tbody id="item_tbody"></tbody>
+                </table>
+            </div>
         </main>
 
         <main  id="cart_content" class="main-content tab-content">

@@ -692,7 +692,7 @@ h1 {
 .config {
     position: fixed;
     right: 20px;
-    top: 20px;
+    top: 30px;
     z-index: 100;
 }
 
@@ -734,7 +734,7 @@ h1 {
     color: var(--text-primary);
 }
 
-.customer-details {
+.details {
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -748,7 +748,7 @@ h1 {
     color: var(--text-primary);
 }
 
-.form-input input {
+.form-input input, .form-input select {
     margin-top: 5px;
     padding: 8px 10px;
     border-radius: 8px;
@@ -757,7 +757,7 @@ h1 {
     transition: 0.2s;
 }
 
-.form-input input:focus {
+.form-input input:focus, .form-input select:focus {
     border-color: var(--primary);
     box-shadow: 0 0 5px var(--sidebar-selected);
 }
@@ -792,7 +792,7 @@ h1 {
 
 .fab {
     position: fixed;
-    top: 20px;
+    top: 30px;
     right: 20px;
     background: var(--accent-gradient);
     color: white;
@@ -818,18 +818,18 @@ h1 {
     overflow-x: auto;
 }
 
-table {
+.table {
     width: 100%;
     border-collapse: collapse;
 }
 
-th,
-td {
+.table th,
+.table td {
     border-bottom: 1px dashed rgba(255, 255, 255, 0.45);
     padding: 10px;
     text-align: left;
 }
-th {
+.table th {
     font-size: 13px;
     text-transform: uppercase;
     letter-spacing: 0.08em;
