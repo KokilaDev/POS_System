@@ -46,6 +46,23 @@ $(document).ready(function () {
     loadChart();
 
     $('#configToggle').click(() => $('.config').toggleClass("open"));
+
+    $('#searchInput').on('keyup', function () {
+
+        let value = $(this).val().toLowerCase();
+
+        $('#customer_tbody tr').each(function () {
+
+            let contact = $(this).find('td:eq(3)').text().toLowerCase();
+
+            $(this).removeClass('highlight');
+
+            if (contact.includes(value) && value !== "") {
+                $(this).addClass('highlight');
+            }
+        });
+
+    });
 });
 
 const tabs = {
