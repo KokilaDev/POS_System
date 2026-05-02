@@ -835,3 +835,135 @@ h1 {
     letter-spacing: 0.08em;
     color: #5b6470;
 }
+
+.cart {
+    margin-top: 0;
+    background: #fff;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    overflow-x: auto;
+}
+
+.row1, .row2 {
+    display: grid;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.row1 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.row2 {
+    margin-top: 10px;
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.cart .form-label.id {
+    display: block;
+    font-weight: 700;
+    font-size: 1.2rem;
+    padding-right: 10px;
+    color: var(--text-primary);
+}
+
+#cart_table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 300px;
+}
+
+#cart_table thead {
+    background-color: #f0f2f5;
+    color: #333;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+#cart_table th,
+#cart_table td {
+    text-align: left;
+    padding: 8px 10px;
+    border-bottom: 1px solid #eee;
+}
+
+#cart_table th {
+    font-weight: 600;
+}
+
+#cart_table tr:hover {
+    background-color: var(--sidebar-active, #f9fafc);
+}
+
+#cart_table tr.active {
+    background-color: var(--sidebar-active, #f9fafc);
+}
+
+#cart_table td .delete-btn {
+    background: var(--danger, #e74c3c);
+    border-radius: 6px;
+    padding: 4px 8px;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    width: auto !important;
+    display: inline-block !important;
+    max-width: fit-content;
+}
+
+#cart_table td .delete-btn:hover {
+    opacity: 0.9;
+}
+
+.row4 {
+    align-self: flex-end;
+    text-align: right;
+    margin-top: 20px;
+}
+
+.row4 h5 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.row4 #total-amount {
+    color: var(--success, #28a745);
+    font-weight: 600;
+}
+
+#cash {
+    margin-top: 5px;
+    padding: 8px 12px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    outline: none;
+    width: 200px;
+    right: 0;
+    text-align: right;
+    font-weight: 600;
+    transition: 0.2s;
+    font-size: 1rem;
+}
+
+#cash:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 5px var(--sidebar-selected);
+}
+
+.cash-input {
+    font-size: 1rem;
+    color: var(--text-primary);
+}
+
+.row4 #balance {
+    color: var(--primary, #007bff);
+    font-weight: 600;
+}
+
+.row4 .btn {
+    width: auto !important;
+    display: inline-block !important;
+}
