@@ -2,7 +2,41 @@ import { CustomerModel } from "../model/CustomerModel.js";
 
 $(document).ready(function () {
     $('#customerId').text(CustomerModel.generateCustomerId());
+    loadCustomerTable();
 });
+
+function loadCustomerTable() {
+    let tablebody = $('#customer_tbody');
+
+    tablebody.empty();
+    CustomerModel.getAllCustomers().forEach((customer, index) => {
+        let row = `
+            <tr data-index="${index}">
+                <td>${customer._customer_id}</td>
+                <td>${customer._customer_name}</td>
+                <td>${customer._contact}</td>
+                <td>${customer._email}</td>
+                <td>${customer._address}</td>
+            </tr>`;
+        tablebody.append(row);
+    });
+
+    $('#customer_tbody tr').click(function () {
+        let selectedId = $(this).find('td:eq(0)').text();
+        let selectedName = $(this).find('td:eq(1)').text();
+        let selectedAddress = $(this).find('td:eq(2)').text();
+        let selectedContact = $(this).find('td:eq(3)').text();
+        let selectedEmail = $(this).find('td:eq(4)').text();
+
+        $('#customerId').text(selectedId);
+        $('#customerName').val(selectedName);
+        $('#address').val(selectedAddress);
+        $('#contact').val(selectedContact);
+        $('#email').val(selectedEmail);
+
+        clearValidation();
+    });
+}
 
 $('#customer_save_btn').on('click', function () {
     saveCustomer();
@@ -51,7 +85,7 @@ function saveCustomer() {
         timer: 2000,
         timerProgressBar: true
     });
-    $('#customerId').text(CustomerModel.generateCustomerId());
+    loadCustomerTable();
     clearFields();
 }
 
@@ -66,5 +100,6 @@ function validate() {
 }
 
 function clearFields() {
+    $('#customerId').text(CustomerModel.generateCustomerId());
     $('#customerName, #address, #contact, #email').val("");
 }

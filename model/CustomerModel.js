@@ -14,5 +14,9 @@ export const CustomerModel = {
         let customer = new CustomerDTO(id, name, address, contact, email);
         customer_db.push(customer);
         return customer;
+    },
+
+    getAllCustomers() {
+        return customer_db;
     }
 }
