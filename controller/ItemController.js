@@ -39,6 +39,29 @@ function loadItemTable() {
     });
 }
 
+$('#item_tbody').on('dblclick', 'td', function () {
+   if ($(this).index() === 0) return;
+   let value = $(this).text();
+   $(this).html(`<input type="text" class="edit" value="${value}">`);
+   $(this).find('input').focus();
+});
+
+$('#item_tbody').on('keypress', '.edit', function (e) {
+    if (e.key === "Enter") {
+        let input = $(this);
+        let newValue = input.val();
+
+        let cell = input.closest('td');
+        let row = cell.closest('tr');
+
+        let id = row.find('td:eq(0)').text();
+        let colIndex = cell.index();
+
+        ItemModel.updateItem(id, colIndex, newValue);
+        input.parent().text(newValue);
+    }
+});
+
 $('#item_save_btn').on('click', function () {
     saveItem()
 });

@@ -16,6 +16,17 @@ export const ItemModel = {
         return item;
     },
 
+    updateItem(id, colIndex, value) {
+        let item = item_db.find(i => i.item_code === id);
+        if (!item) return;
+        switch (colIndex) {
+            case 1: item._item_name = value; break;
+            case 2: item._unit_price = value; break;
+            case 3: item._qty_on_hand = value; break;
+            case 4: item._category = value; break;
+        }
+    },
+
     getAllItems() {
         return item_db;
     }
