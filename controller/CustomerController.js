@@ -114,11 +114,11 @@ $('#customer_tbody').on('click', '.customer_delete_btn', function () {
             });
         }
     });
-})
+});
 
 $('#customer_save_btn').on('click', function () {
     saveCustomer();
-})
+});
 
 function saveCustomer() {
     if(!validate()) {
