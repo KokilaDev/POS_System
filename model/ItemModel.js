@@ -27,6 +27,10 @@ export const ItemModel = {
         }
     },
 
+    deleteItem(index) {
+        item_db.splice(index, 1);
+    },
+
     getAllItems() {
         return item_db;
     }

@@ -39,29 +39,6 @@ function loadItemTable() {
     });
 }
 
-$('#item_tbody').on('dblclick', 'td', function () {
-   if ($(this).index() === 0) return;
-   let value = $(this).text();
-   $(this).html(`<input type="text" class="edit" value="${value}">`);
-   $(this).find('input').focus();
-});
-
-$('#item_tbody').on('keypress', '.edit', function (e) {
-    if (e.key === "Enter") {
-        let input = $(this);
-        let newValue = input.val();
-
-        let cell = input.closest('td');
-        let row = cell.closest('tr');
-
-        let id = row.find('td:eq(0)').text();
-        let colIndex = cell.index();
-
-        ItemModel.updateItem(id, colIndex, newValue);
-        input.parent().text(newValue);
-    }
-});
-
 $('#item_save_btn').on('click', function () {
     saveItem()
 });
@@ -99,6 +76,65 @@ function saveItem() {
     loadItemTable();
     clearFields();
 }
+
+$('#item_tbody').on('dblclick', 'td', function () {
+   if ($(this).index() === 0) return;
+   let value = $(this).text();
+   $(this).html(`<input type="text" class="edit" value="${value}">`);
+   $(this).find('input').focus();
+});
+
+$('#item_tbody').on('keypress', '.edit', function (e) {
+    if (e.key === "Enter") {
+        let input = $(this);
+        let newValue = input.val();
+
+        let cell = input.closest('td');
+        let row = cell.closest('tr');
+
+        let id = row.find('td:eq(0)').text();
+        let colIndex = cell.index();
+
+        ItemModel.updateItem(id, colIndex, newValue);
+        input.parent().text(newValue);
+    }
+});
+
+$('#item_tbody').on('click', '.item_delete_btn', function () {
+    let row = $(this).closest('tr');
+    let index = row.data('index');
+
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'Cancel',
+        focusCancel: true,
+        buttonsStyling: true,
+        customClass: {
+            confirmButton: 'btn btn-danger',
+            cancelButton: 'btn btn-primary'
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+
+            ItemModel.deleteItem(index);
+            loadItemTable();
+
+            Swal.fire({
+                toast: true,
+                position: 'top-end',
+                icon: 'success',
+                title: 'Item deleted successfully!',
+                showConfirmButton: false,
+                timer: 1500,
+                timerProgressBar: true
+            });
+        }
+    });
+});
 
 function clearFields() {
     $('#itemId').text(ItemModel.generateItemCode());
