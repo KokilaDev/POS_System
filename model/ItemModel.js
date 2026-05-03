@@ -14,5 +14,9 @@ export const ItemModel = {
         let item = new ItemDTO(id, name, unitPrice, quantity, category);
         item_db.push(item);
         return item;
+    },
+
+    getAllItems() {
+        return item_db;
     }
 }
