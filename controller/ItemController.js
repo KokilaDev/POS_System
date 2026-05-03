@@ -5,6 +5,23 @@ $(document).ready(function () {
     loadItemTable();
 });
 
+$('.searchInput').on('keyup', function () {
+    let value = $(this).val().toLowerCase();
+    highlightRows('#item_tbody', value);
+});
+
+function highlightRows(tbodySelector, searchValue) {
+    $(`${tbodySelector} tr`).each(function () {
+        let rowText = $(this).text().toLowerCase();
+
+        if (rowText.includes(searchValue)) {
+            $(this).show();
+        } else {
+            $(this).hide();
+        }
+    });
+}
+
 function loadItemTable() {
     $('#item_tbody').empty();
     ItemModel.getAllItems().forEach((item, index) => {
