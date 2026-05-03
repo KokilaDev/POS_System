@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POS System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="asset/css/style.css">
+</head>
+<body>
+
+<!--<div class="login">-->
+<!--    <form class="login-form">-->
+<!--        <div class="login-form-inner">-->
+<!--            <h1>Login</h1>-->
+<!--            <div class="input-box">-->
+<!--                <input type="text" placeholder="Username" required id="username">-->
+<!--                <i class="fa-solid fa-user"></i>-->
+<!--            </div>-->
+<!--            <div class="input-box">-->
+<!--                <input type="password" placeholder="Password" required id="password">-->
+<!--                <i class="fa-solid fa-lock"></i>-->
+<!--            </div>-->
+<!--            <div class="container">-->
+<!--                <label><input type="checkbox"> Remember me</label>-->
+<!--                <a href="#">Forgot Password?</a>-->
+<!--            </div>-->
+<!--            <button type="submit" class="btn" id="btn">Login</button>-->
+<!--            <div class="register">-->
+<!--                <p>Don't have an account? <a href="#">Register</a></p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </form>-->
+<!--    <div class="onboarding">-->
+<!--        <div class="swiper">-->
+<!--            <div class="swiper-wrapper">-->
+<!--                <div class="swiper-slide">-->
+<!--                    <img src="https://cdni.iconscout.com/illustration/premium/thumb/woman-doing-cashless-payment-at-supermarket-counter-illustration-svg-download-png-8780011.png" alt="Billing at Supermarket POS">-->
+<!--                    <h2>Fast & Easy Billing</h2>-->
+<!--                    <p>Process supermarket purchases quickly with barcode scanning and instant receipt generation.</p>-->
+<!--                </div>-->
+<!--                <div class="swiper-slide">-->
+<!--                    <img src="https://cdni.iconscout.com/illustration/premium/thumb/warehouse-worker-checking-inventory-illustration-svg-download-png-7481960.png" alt="Supermarket Inventory Management">-->
+<!--                    <h2>Smart Inventory Management</h2>-->
+<!--                    <p>Track stock levels in real time and get alerts for low or out‑of‑stock items.</p>-->
+<!--                </div>-->
+<!--                <div class="swiper-slide">-->
+<!--                    <img src="https://cdni.iconscout.com/illustration/premium/thumb/market-sales-analysis-illustration-svg-download-png-10780874.png" alt="POS Sales Report Dashboard">-->
+<!--                    <h2>Sales Reports & Insights</h2>-->
+<!--                    <p>Analyze daily sales, profits, and performance with clear business reports.</p>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="swiper-pagination"></div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<div id="pos-section" class="pos-section">
+    <div class="container">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <div class="logo-icon"><i class="fas fa-bolt"></i></div>
+                    <span>POS System</span>
+                </div>
+            </div>
+            <div class="sidebar-content">
+                <ul class="sidebar-nav">
+                    <li id="dashboard_tab" class="sidebar-nav-item active">
+                        <i class="fas fa-home"></i><span>Dashboard</span>
+                    </li>
+                    <li id="customer_tab" class="sidebar-nav-item">
+                        <i class="fas fa-users"></i><span>Customers</span>
+                    </li>
+                    <li id="item_tab" class="sidebar-nav-item">
+                        <i class="fas fa-box"></i><span>Items</span>
+                    </li>
+                    <li id="cart_tab" class="sidebar-nav-item">
+                        <i class="fas fa-shopping-cart"></i><span>Cart</span>
+                    </li>
+                    <li id="order_tab" class="sidebar-nav-item">
+                        <i class="fas fa-clipboard-list"></i><span>Orders</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="sidebar-footer">
+                <button id="logout_btn" class="logout_btn">
+                    <i class="fa-solid fa-right-from-bracket"></i> Logout
+                </button>
+            </div>
+        </aside>
+
+        <main id="dashboard_content" class="main-content tab-content">
+            <div class="dashboard-grid">
+                <div class="stat-card primary">
+                    <div class="stat-header">
+                        <div class="stat-title">Total Revenue</div>
+                        <div class="stat-icon primary"><i class="fas fa-dollar-sign"></i></div>
+                    </div>
+                    <div class="stat-value" id="total_revenue"><span>Rs.</span>0.00</div>
+                    <div class="stat-change positive">
+                        <i class="fas fa-arrow-up"></i><span>0% from last month</span>
+                    </div>
+                </div>
+                <div class="stat-card secondary">
+                    <div class="stat-header">
+                        <div class="stat-title">Total Customers</div>
+                        <div class="stat-icon secondary"><i class="fas fa-users"></i></div>
+                    </div>
+                    <div class="stat-value" id="total_customers">0</div>
+                    <div class="stat-change positive">
+                        <i class="fas fa-arrow-up"></i><span>0% from last month</span>
+                    </div>
+                </div>
+                <div class="stat-card success">
+                    <div class="stat-header">
+                        <div class="stat-title">Total Orders</div>
+                        <div class="stat-icon success"><i class="fas fa-shopping-bag"></i></div>
+                    </div>
+                    <div class="stat-value" id="total_orders">0</div>
+                    <div class="stat-change positive">
+                        <i class="fas fa-arrow-up"></i><span>0% from last month</span>
+                    </div>
+                </div>
+                <div class="stat-card warning">
+                    <div class="stat-header">
+                        <div class="stat-title">Low Stock Products</div>
+                        <div class="stat-icon warning">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value" id="low-item">-</div>
+                    <div class="stat-change negative" id="low-item-info">
+                        <i class="fas fa-arrow-down"></i><span>No low-stock items</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="charts-section">
+                <div class="chart" id="sales-chart">
+                    <div>Sales</div>
+                    <canvas id="salesChart"></canvas>
+                </div>
+                <div class="chart" id="categoryChart">
+                    <div>Categories</div>
+                    <table id="categoryTable" class="category-table">
+                        <thead>
+                        <tr>
+                            <th>Category Name</th>
+                            <th>Number of Items</th>
+                        </tr>
+                        </thead>
+                        <tbody id="category-table-body">
+                        <tr><td>Fruits & Vegetables</td><td id="count-fruits">0</td></tr>
+                        <tr><td>Dairy & Eggs</td><td id="count-dairy">0</td></tr>
+                        <tr><td>Beverages</td><td id="count-beverages">0</td></tr>
+                        <tr><td>Snacks & Confectionery</td><td id="count-snacks">0</td></tr>
+                        <tr><td>Household Essentials</td><td id="count-household">0</td></tr>
+                        <tr><td>Grains & Pulses</td><td id="count-grains">0</td></tr>
+                        <tr><td>Spices & Seasonings</td><td id="count-spices">0</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+
+        <main id="customer_content" class="main-content tab-content">
+            <div class="search-box">
+                <input type="text" class="searchInput" placeholder="Search here...">
+            </div>
+
+            <div class="config">
+                <div class="panel">
+                    <h3 style="margin-bottom: 6px;">New customer</h3>
+                    <div class="form-label id">
+                        Customer ID : <span id="customerId"></span>
+                    </div>
+                    <div class="details">
+                        <label class="form-input">Customer name <input type="text" name="customerName" id="customerName"></label>
+                        <label class="form-input">Address <input type="text" name="address" id="address"></label>
+                        <label class="form-input">Contact <input type="text" name="contact" id="contact"></label>
+                        <label class="form-input">Email <input type="text" name="email" id="email"></label>
+                    </div>
+                    <div class="buttons" style="margin-top: 12px;">
+                        <button type="button" class="btn btn-success" id="customer_save_btn">Save</button>
+                        <button type="button" class="btn btn-danger" id="customer_reset_btn">Cancel</button>
+                    </div>
+                </div>
+                <button class="configToggle fab"><i class="fa-solid fa-plus"></i> Add new customer</button>
+            </div>
+
+            <div class="card">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Customer ID</th>
+                        <th>Customer Name</th>
+                        <th>Address</th>
+                        <th>Contact No</th>
+                        <th>Email</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody id="customer_tbody"></tbody>
+                </table>
+            </div>
+        </main>
+
+        <main id="item_content" class="main-content tab-content">
+            <div class="search-box">
+                <input type="text" class="searchInput" placeholder="Search here...">
+            </div>
+
+            <div class="config">
+                <div class="panel">
+                    <h3 style="margin-bottom: 6px;">New item</h3>
+                    <div class="form-label id">
+                        Item ID : <span id="itemId"></span>
+                    </div>
+                    <div class="details">
+                        <label class="form-input">Item name <input type="text" name="itemName" id="itemName"></label>
+                        <label class="form-input">Unit price <input type="text" name="unitPrice" id="unitPrice"></label>
+                        <label class="form-input">Quantity <input type="text" name="quantity" id="quantity"></label>
+                        <label class="form-input">
+                            Category
+                            <select name="category" id="category">
+                                <option value="" disabled selected hidden> Select Category </option>
+                                <option value="Fruits & Vegetables">Fruits & Vegetables</option>
+                                <option value="Dairy & Eggs">Dairy & Eggs</option>
+                                <option value="Beverages">Beverages</option>
+                                <option value="Snacks & Confectionery">Snacks & Confectionery</option>
+                                <option value="Household Essentials">Household Essentials</option>
+                                <option value="Grains & Pulses">Grains & Pulses</option>
+                                <option value="Spices & Seasonings">Spices & Seasonings</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="buttons" style="margin-top: 12px;">
+                        <button type="button" class="btn btn-success" id="item_save_btn">Save</button>
+                        <button type="button" class="btn btn-primary" id="item_update_btn">Update</button>
+                        <button type="button" class="btn btn-danger" id="item_delete_btn">Delete</button>
+                        <button type="button" class="btn btn-warning" id="item_reset_btn">Clear</button>
+                    </div>
+                </div>
+                <button class="configToggle fab"><i class="fa-solid fa-plus"></i> Add new item</button>
+            </div>
+
+            <div class="card">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Item ID</th>
+                        <th>Item Name</th>
+                        <th>Unit Price</th>
+                        <th>Quantity</th>
+                        <th>Category</th>
+                    </tr>
+                    </thead>
+                    <tbody id="item_tbody"></tbody>
+                </table>
+            </div>
+        </main>
+
+        <main  id="cart_content" class="main-content tab-content">
+            <div class="cart">
+                <div class="row1">
+                    <div class="form-label id">
+                        Order ID : <span id="orderId"></span>
+                    </div>
+                    <div class="form-label id">
+                        Order Date : <span id="orderDate"></span>
+                    </div>
+                    <label class="form-input id">
+                        Customer
+                        <select class="form-input" name="selectCustomer" id="selectCustomer">
+                            <option value="" disabled selected hidden>Select Customer</option>
+                        </select>
+                    </label>
+                </div>
+                <hr>
+                <div class="row2">
+                    <label class="form-input">
+                        Item
+                        <select class="form-input" name="selectItem" id="selectItem">
+                            <option value="" disabled selected hidden>Select Item</option>
+                        </select>
+                    </label>
+                    <label class="form-input">Unit price <input type="text" name="price" id="price" readonly></label>
+                    <label class="form-input">Qty On Hand <input type="text" name="qtyOnHand" id="qtyOnHand" readonly></label>
+                    <label class="form-input">Quantity <input type="text" name="qty" id="qty"></label>
+                    <label class="form-input">Total <input type="text" name="total" id="total" readonly></label>
+                </div>
+                <div class="row3">
+                    <table class="table" id="cart_table">
+                        <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Total</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody id="cart_tbody"></tbody>
+                    </table>
+                </div>
+                <div class="row4">
+                    <h5>Total Amount: Rs. <span id="total-amount">0.00</span></h5>
+                    <label class="cash-input">
+                        Cash Rs. <input type="text" id="cash" placeholder="0.00">
+                    </label>
+                    <h5>Balance: Rs. <span id="balance">0.00</span></h5>
+                    <button type="button" class="btn btn-success" id="place_order_btn">Place Order</button>
+                    <button type="button" class="btn btn-danger" id="order_cancel_btn">Cancel</button>
+                </div>
+            </div>
+        </main>
+
+        <main id="order_content" class="main-content tab-content">
+            <div class="cart">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Customer Name</th>
+                        <th>Order Date</th>
+                        <th>Total (Rs.)</th>
+                    </tr>
+                    </thead>
+                    <tbody id="order_tbody"></tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+</div>
+
+<script src="asset/lib/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<script src="asset/js/script.js"></script>
+
+<script src="util/validation.js"></script>
+<script type="module" src="controller/CustomerController.js"></script>
+
+</body>
+</html>
