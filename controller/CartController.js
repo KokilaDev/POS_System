@@ -15,6 +15,7 @@ $(document).ready(function () {
     loadItems();
     loadOrderTable();
     calculateTotalRevenue();
+    loadOrderCount();
 
     $(document).on("customerAdded customerUpdated customerDeleted", function () {
         loadCustomers();
@@ -159,6 +160,7 @@ $(document).ready(function () {
        loadItemTable();
        loadOrderTable();
        calculateTotalRevenue();
+       loadOrderCount();
 
        CartModel.clearCart();
        loadCartTable();
@@ -291,6 +293,10 @@ function calculateTotalRevenue() {
         totalRevenue += Number(order._total_amount);
     });
     $('#total_revenue').html(`<span>Rs.</span>${totalRevenue.toFixed(2)}`);
+}
+
+function loadOrderCount() {
+    $('#total_orders').text(OrderModel.getOrderCount());
 }
 
 function clearItemFields() {
