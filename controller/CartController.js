@@ -14,6 +14,7 @@ $(document).ready(function () {
     loadCustomers();
     loadItems();
     loadOrderTable();
+    calculateTotalRevenue();
 
     $(document).on("customerAdded customerUpdated customerDeleted", function () {
         loadCustomers();
@@ -157,6 +158,7 @@ $(document).ready(function () {
 
        loadItemTable();
        loadOrderTable();
+       calculateTotalRevenue();
 
        CartModel.clearCart();
        loadCartTable();
@@ -281,6 +283,14 @@ function loadOrderTable() {
             </tr>`;
         $("#order_tbody").append(row);
     });
+}
+
+function calculateTotalRevenue() {
+    let totalRevenue = 0;
+    order_db.forEach(order => {
+        totalRevenue += Number(order._total_amount);
+    });
+    $('#total_revenue').html(`<span>Rs.</span>${totalRevenue.toFixed(2)}`);
 }
 
 function clearItemFields() {
