@@ -158,6 +158,7 @@ $(document).ready(function () {
        CartModel.clearCart();
        loadCartTable();
        calculateTotal();
+       clearItemFields();
 
        $('#cash').val("");
        $('#selectCustomer').val("");
@@ -175,6 +176,38 @@ $(document).ready(function () {
 
        $('#orderId').text(CartModel.generateOrderId());
        $('#orderDate').text(CartModel.updateOrderDate());
+    });
+
+    $('#order_cancel_btn').on("click", function () {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "Do you really want to cancel this order?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, cancel it!',
+            cancelButtonText: 'No, keep it'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                CartModel.clearCart();
+                loadCartTable();
+                calculateTotal();
+                clearItemFields();
+                $('#cash').val("");
+                $('#balance').text("0.00");
+
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Cancelled!',
+                    showConfirmButton: false,
+                    timer: 1500,
+                    timerProgressBar: true
+                });
+            }
+        });
     });
 });
 
