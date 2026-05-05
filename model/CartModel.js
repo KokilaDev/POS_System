@@ -49,6 +49,7 @@ export const CartModel = {
     },
 
     clearCart() {
-        return cart_db;
+        cart_db.length = 0;
+        return true;
     }
 }

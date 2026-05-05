@@ -4,6 +4,7 @@ import { ItemModel } from "../model/ItemModel.js";
 import { customer_db, item_db, order_db } from "../db/DB.js";
 import OrderDTO from "../dto/OrderDTO.js";
 import { loadItemTable } from "./ItemController.js";
+import { OrderModel } from "../model/OrderModel.js";
 
 $(document).ready(function () {
     $('#orderId').text(CartModel.generateOrderId());
@@ -12,6 +13,7 @@ $(document).ready(function () {
 
     loadCustomers();
     loadItems();
+    loadOrderTable();
 
     $(document).on("customerAdded customerUpdated customerDeleted", function () {
         loadCustomers();
@@ -154,6 +156,7 @@ $(document).ready(function () {
        });
 
        loadItemTable();
+       loadOrderTable();
 
        CartModel.clearCart();
        loadCartTable();
@@ -264,6 +267,20 @@ function calculateTotal() {
     const cash = parseFloat($('#cash').val()) || 0;
     const balance = cash - total;
     $('#balance').text(balance >= 0 ? balance.toFixed(2) : "0.00");
+}
+
+function loadOrderTable() {
+    $('#order_tbody').empty();
+    OrderModel.getAllOrders().forEach(order => {
+        let row = `
+            <tr>
+                <td>${order._order_id}</td>
+                <td>${order._customer_name}</td>
+                <td>${order._order_date}</td>
+                <td>${order._total_amount}</td>
+            </tr>`;
+        $("#order_tbody").append(row);
+    });
 }
 
 function clearItemFields() {
