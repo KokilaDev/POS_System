@@ -42,5 +42,9 @@ export const CartModel = {
         if (index !== -1) {
             cart_db.splice(index, 1);
         }
+    },
+
+    calculateTotal() {
+        return cart_db.reduce((sum, item) => sum + item._total, 0);
     }
 }

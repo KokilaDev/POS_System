@@ -85,6 +85,7 @@ $(document).ready(function () {
         CartModel.addToCart(item_code, item_name, qty, price);
 
         loadCartTable();
+        calculateTotal();
         clearItemFields();
     });
 });
@@ -131,7 +132,13 @@ function loadCartTable() {
         const code = $(this).data("id");
         CartModel.removeFromCart(code);
         loadCartTable();
+        calculateTotal();
     });
+}
+
+function calculateTotal() {
+    const total = CartModel.calculateTotal();
+    $('#total-amount').text(total.toFixed(2));
 }
 
 function clearItemFields() {
