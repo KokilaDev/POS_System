@@ -50,6 +50,30 @@ $(document).ready(function () {
             $('#qtyError').text('');
         }
     });
+
+    $('#add_to_cart_btn').on("click", function (event) {
+        event.preventDefault();
+
+        const item_code = $('#selectItem').val();
+        const qty = parseInt($('#qty').val());
+        const price = parseFloat($('#price').val());
+
+        if (!item_code || isNaN(qty) || qty <= 0) {
+            Swal.fire({
+                toast: true,
+                position: 'top-end',
+                icon: 'warning',
+                title: 'Please select a valid item and quantity!',
+                showConfirmButton: false,
+                timer: 1500
+            });
+            return;
+        }
+
+        CartModel.addToCart(item_code, qty, price);
+        loadCartTable();
+        clearItemFields();
+    });
 });
 
 function loadCustomers() {
@@ -68,4 +92,31 @@ function loadItems() {
     ItemModel.getAllItems().forEach(item => {
         select.append(`<option value="${item._item_code}">${item._item_name}</option>`);
     });
+}
+
+function loadCartTable() {
+    const tbody = $('#cart_tbody');
+    tbody.empty();
+
+    CartModel.getAllItems().forEach(item => {
+        tbody.append(`
+            <tr>
+                <td>${item._item_code}</td>
+                <td>${item._qty_on_hand}</td>
+                <td>${item._unit_price.toFixed(2)}</td>
+                <td>${item._total.toFixed(2)}</td>
+                <td>
+                    <button class="btn btn-sm btn-danger remove-btn" data-id="${item._item_code}">Remove</button>
+                </td>
+            </tr>
+        `);
+    });
+}
+
+function clearItemFields() {
+    $('#selectItem').val("");
+    $('#price').val("");
+    $('#qty').val("");
+    $('#total').val("");
+    $('#qtyOnHand').val("");
 }
