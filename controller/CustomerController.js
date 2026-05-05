@@ -92,7 +92,7 @@ function saveCustomer() {
     }
 
     CustomerModel.addCustomer(name, address, contact, email);
-    $(document).trigger("customer added");
+    $(document).trigger("customerAdded");
 
     Swal.fire({
         toast: true,
@@ -126,6 +126,7 @@ $('#customer_tbody').on('keypress', '.edit', function (e) {
         let colIndex = cell.index();
 
         CustomerModel.updateCustomer(id, colIndex, newValue);
+        $(document).trigger("customerUpdated");
 
         input.parent().text(newValue);
     }
@@ -152,6 +153,7 @@ $('#customer_tbody').on('click', '.customer_delete_btn', function () {
         if (result.isConfirmed) {
 
             CustomerModel.deleteCustomer(index);
+            $(document).trigger("customerDeleted");
             loadCustomerTable();
 
             Swal.fire({

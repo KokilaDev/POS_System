@@ -79,7 +79,7 @@ function saveItem() {
     }
 
     ItemModel.addItem(name, unitPrice, quantity, category);
-    $(document).trigger("item added");
+    $(document).trigger("itemAdded");
 
     Swal.fire({
         toast: true,
@@ -113,6 +113,7 @@ $('#item_tbody').on('keypress', '.edit', function (e) {
         let colIndex = cell.index();
 
         ItemModel.updateItem(id, colIndex, newValue);
+        $(document).trigger("itemUpdated");
         input.parent().text(newValue);
     }
 });
@@ -138,6 +139,7 @@ $('#item_tbody').on('click', '.item_delete_btn', function () {
         if (result.isConfirmed) {
 
             ItemModel.deleteItem(index);
+            $(document).trigger("itemDeleted");
             loadItemTable();
 
             Swal.fire({
