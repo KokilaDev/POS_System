@@ -3,6 +3,7 @@ import { CustomerModel } from "../model/CustomerModel.js";
 $(document).ready(function () {
     $('#customerId').text(CustomerModel.generateCustomerId());
     loadCustomerTable();
+    loadCustomerCount();
 });
 
 $('.searchInput').on('keyup', function () {
@@ -104,6 +105,7 @@ function saveCustomer() {
         timerProgressBar: true
     });
     loadCustomerTable();
+    loadCustomerCount();
     clearFields();
 }
 
@@ -155,6 +157,7 @@ $('#customer_tbody').on('click', '.customer_delete_btn', function () {
             CustomerModel.deleteCustomer(index);
             $(document).trigger("customerDeleted");
             loadCustomerTable();
+            loadCustomerCount();
 
             Swal.fire({
                 toast: true,
@@ -168,6 +171,10 @@ $('#customer_tbody').on('click', '.customer_delete_btn', function () {
         }
     });
 });
+
+function loadCustomerCount() {
+    $('#total_customers').text(CustomerModel.getCustomerCount());
+}
 
 function validate() {
     const rules = [

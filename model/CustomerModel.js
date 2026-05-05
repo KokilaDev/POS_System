@@ -33,5 +33,9 @@ export const CustomerModel = {
 
     getAllCustomers() {
         return customer_db;
+    },
+
+    getCustomerCount() {
+        return customer_db.length;
     }
 }
