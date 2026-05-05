@@ -33,14 +33,11 @@ $(document).ready(function () {
     });
 
     $('#qty').on("input", function () {
-        const qty = parseInt($(this).val());
-        const price = parseFloat($('#price').val());
-        $('#total').val((qty * price || 0).toFixed(2));
-    });
+        const qty = parseInt($(this).val()) || 0;
+        const price = parseFloat($('#price').val()) || 0;
+        const qtyOnHand = parseInt($('#qtyOnHand').val()) || 0;
 
-    $('#qty').on('input', function () {
-        let qtyOnHand = parseInt($('#qtyOnHand').val()) || 0;
-        let qty = parseInt($(this).val()) || 0;
+        $('#total').val((qty * price).toFixed(2));
 
         if (qty > qtyOnHand) {
             $(this).addClass('error-border');
@@ -55,22 +52,38 @@ $(document).ready(function () {
         event.preventDefault();
 
         const item_code = $('#selectItem').val();
+        const item_name = $('#selectItem option:selected').text();
         const qty = parseInt($('#qty').val());
         const price = parseFloat($('#price').val());
 
-        if (!item_code || isNaN(qty) || qty <= 0) {
+        if (!item_code || !item_name || isNaN(qty) || qty <= 0 || isNaN(price)) {
             Swal.fire({
                 toast: true,
                 position: 'top-end',
                 icon: 'warning',
-                title: 'Please select a valid item and quantity!',
+                title: 'Please select valid item & quantity!',
                 showConfirmButton: false,
                 timer: 1500
             });
             return;
         }
 
-        CartModel.addToCart(item_code, qty, price);
+        const qtyOnHand = parseInt($('#qtyOnHand').val()) || 0;
+
+        if (qty > qtyOnHand) {
+            Swal.fire({
+                toast: true,
+                position: 'top-end',
+                icon: 'error',
+                title: 'Not enough stock!',
+                showConfirmButton: false,
+                timer: 1500
+            });
+            return;
+        }
+
+        CartModel.addToCart(item_code, item_name, qty, price);
+
         loadCartTable();
         clearItemFields();
     });
@@ -101,21 +114,23 @@ function loadCartTable() {
     CartModel.getAllItems().forEach(item => {
         tbody.append(`
             <tr>
-                <td>${item._item_code}</td>
-                <td>${item._qty_on_hand}</td>
+                <td>${item._item_name}</td>
+                <td>${item._qty}</td>
                 <td>${item._unit_price.toFixed(2)}</td>
                 <td>${item._total.toFixed(2)}</td>
                 <td>
-                    <button class="btn btn-sm btn-danger remove-btn" data-id="${item._item_code}">Remove</button>
+                    <button class="btn btn-danger remove-btn" data-id="${item._item_code}">
+                        Remove
+                    </button>
                 </td>
             </tr>
         `);
     });
 
     $('.remove-btn').on("click", function () {
-       const code = $(this).data("id");
-       CartModel.removeFromCart(code);
-       loadCartTable();
+        const code = $(this).data("id");
+        CartModel.removeFromCart(code);
+        loadCartTable();
     });
 }
 

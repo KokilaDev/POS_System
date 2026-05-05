@@ -986,3 +986,8 @@ h1 {
 #qtyError {
     color: var(--danger);
 }
+
+.remove-btn {
+    width: 100px;
+    text-align: center;
+}

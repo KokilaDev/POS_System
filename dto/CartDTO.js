@@ -1,7 +1,8 @@
 export default class CartDTO {
-    constructor(item_code, qty_on_hand, unit_price, total) {
+    constructor(item_code, item_name, qty, unit_price, total) {
         this._item_code = item_code;
-        this._qty_on_hand = qty_on_hand;
+        this._item_name = item_name;
+        this._qty = qty;
         this._unit_price = unit_price;
         this._total = total;
     }
@@ -14,12 +15,20 @@ export default class CartDTO {
         this._item_code = value;
     }
 
-    get qty_on_hand() {
-        return this._qty_on_hand;
+    get item_name() {
+        return this._item_name;
     }
 
-    set qty_on_hand(value) {
-        this._qty_on_hand = value;
+    set item_name(value) {
+        this._item_name = value;
+    }
+
+    get qty() {
+        return this._qty;
+    }
+
+    set qty(value) {
+        this._qty = value;
     }
 
     get unit_price() {

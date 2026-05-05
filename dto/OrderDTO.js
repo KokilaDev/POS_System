@@ -1,9 +1,9 @@
 export default class OrderDTO {
-    constructor(order_id, customer_name, order_date, total) {
+    constructor(order_id, customer_name, order_date, total_amount) {
         this._order_id = order_id;
         this._customer_name = customer_name;
         this._order_date = order_date;
-        this._total = total;
+        this._total_amount = total_amount;
     }
 
     get order_id() {
@@ -30,11 +30,11 @@ export default class OrderDTO {
         this._order_date = value;
     }
 
-    get total() {
-        return this._total;
+    get total_amount() {
+        return this._total_amount;
     }
 
-    set total(value) {
-        this._total = value;
+    set total_amount(value) {
+        this._total_amount = value;
     }
 }

@@ -1,4 +1,4 @@
-import { cart_db, order_db} from "../db/DB.js";
+import { cart_db, order_db } from "../db/DB.js";
 import CartDTO from "../dto/CartDTO.js";
 
 export const CartModel = {
@@ -19,15 +19,16 @@ export const CartModel = {
         return `${year}-${month}-${day}`;
     },
 
-    addToCart(item_code, qty, unit_price) {
+    addToCart(item_code, item_name, qty, unit_price) {
         const total = qty * unit_price;
 
         let existingItem = cart_db.find(item => item._item_code === item_code);
+
         if (existingItem) {
-            existingItem._qty_on_hand += qty;
-            existingItem._total = existingItem._qty_on_hand * existingItem._unit_price;
+            existingItem._qty += qty;
+            existingItem._total = existingItem._qty * existingItem._unit_price;
         } else {
-            const cartItem = new CartDTO(item_code, qty, unit_price, total);
+            const cartItem = new CartDTO(item_code, item_name, qty, unit_price, total);
             cart_db.push(cartItem);
         }
     },
