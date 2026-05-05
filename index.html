@@ -290,8 +290,13 @@
                     </label>
                     <label class="form-input">Unit price <input type="text" name="price" id="price" readonly></label>
                     <label class="form-input">Qty On Hand <input type="text" name="qtyOnHand" id="qtyOnHand" readonly></label>
-                    <label class="form-input">Quantity <input type="text" name="qty" id="qty"></label>
+                    <label class="form-input">
+                        Quantity
+                        <input type="number" name="qty" id="qty">
+                        <small id="qtyError"></small>
+                    </label>
                     <label class="form-input">Total <input type="text" name="total" id="total" readonly></label>
+                    <button class="btn btn-primary" id="add_to_cart_btn">Add</button>
                 </div>
                 <div class="row3">
                     <table class="table" id="cart_table">

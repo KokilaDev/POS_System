@@ -31,6 +31,25 @@ $(document).ready(function () {
             $('#qtyOnHand').val("");
         }
     });
+
+    $('#qty').on("input", function () {
+        const qty = parseInt($(this).val());
+        const price = parseFloat($('#price').val());
+        $('#total').val((qty * price || 0).toFixed(2));
+    });
+
+    $('#qty').on('input', function () {
+        let qtyOnHand = parseInt($('#qtyOnHand').val()) || 0;
+        let qty = parseInt($(this).val()) || 0;
+
+        if (qty > qtyOnHand) {
+            $(this).addClass('error-border');
+            $('#qtyError').text('Not enough stock!');
+        } else {
+            $(this).removeClass('error-border');
+            $('#qtyError').text('');
+        }
+    });
 });
 
 function loadCustomers() {

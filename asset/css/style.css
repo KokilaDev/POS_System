@@ -869,7 +869,7 @@ h1 {
 
 .row2 {
     margin-top: 10px;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
 }
 
 .cart .form-label.id {
@@ -977,4 +977,12 @@ h1 {
 .row4 .btn {
     width: auto !important;
     display: inline-block !important;
+}
+
+.error-border {
+    border: 2px solid var(--danger) !important;
+}
+
+#qtyError {
+    color: var(--danger);
 }
