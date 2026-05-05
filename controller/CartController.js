@@ -1,6 +1,7 @@
 import { CartModel } from "../model/CartModel.js";
 import { CustomerModel } from "../model/CustomerModel.js";
 import { ItemModel } from "../model/ItemModel.js";
+import { item_db } from "../db/DB.js";
 
 $(document).ready(function () {
     $('#orderId').text(CartModel.generateOrderId());
@@ -16,6 +17,19 @@ $(document).ready(function () {
 
     $(document).on("itemAdded itemUpdated itemDeleted", function () {
         loadItems();
+    });
+
+    $('#selectItem').on("change", function () {
+        const selectedItemCode = $(this).val();
+        const item = item_db.find(i => i._item_code === selectedItemCode);
+
+        if (item) {
+            $('#price').val(item._unit_price);
+            $('#qtyOnHand').val(item._qty_on_hand);
+        } else {
+            $('#price').val("");
+            $('#qtyOnHand').val("");
+        }
     });
 });
 
