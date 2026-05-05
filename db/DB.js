@@ -11,7 +11,12 @@ let item_db = [
     { _item_code: "I002", _item_name: "Milk Packet", _unit_price: 120.00, _qty_on_hand: 3, _category: "Dairy & Eggs" },
     { _item_code: "I003", _item_name: "Coca Cola 1L", _unit_price: 300.00, _qty_on_hand: 4, _category: "Beverages" },
     { _item_code: "I004", _item_name: "Biscuits Pack", _unit_price: 180.00, _qty_on_hand: 75, _category: "Snacks & Confectionery" },
-    { _item_code: "I005", _item_name: "Chili Powder 100g", _unit_price: 90.00, _qty_on_hand: 60, _category: "Spices & Seasonings" }
+    { _item_code: "I005", _item_name: "Chili Powder 100g", _unit_price: 90.00, _qty_on_hand: 60, _category: "Spices & Seasonings" },
+    { _item_code: "I006", _item_name: "Sugar 1kg", _unit_price: 280.00, _qty_on_hand: 45, _category: "Grains & Pulses" },
+    { _item_code: "I007", _item_name: "Egg Tray (30)", _unit_price: 950.00, _qty_on_hand: 12, _category: "Dairy & Eggs" },
+    { _item_code: "I008", _item_name: "Orange Juice 1L", _unit_price: 350.00, _qty_on_hand: 25, _category: "Beverages" },
+    { _item_code: "I009", _item_name: "Soap Bar", _unit_price: 85.00, _qty_on_hand: 8, _category: "Household Essentials" },
+    { _item_code: "I010", _item_name: "Cooking Oil 1L", _unit_price: 620.00, _qty_on_hand: 2, _category: "Household Essentials" }
 ];
 
 let cart_db = [];

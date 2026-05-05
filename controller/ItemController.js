@@ -4,6 +4,7 @@ $(document).ready(function () {
     $('#itemId').text(ItemModel.generateItemCode());
     loadItemTable();
     updateLowStockItems();
+    updateCategoryChart();
 });
 
 $(document).on("orderPlaced", function () {
@@ -200,6 +201,39 @@ function updateLowStockItems() {
     $lowItemInfoDiv
         .html(`<i class="fas fa-arrow-down"></i><span> ${minQtyItem._qty_on_hand} - ${minQtyItem._item_name}</span>`)
         .addClass("low");
+}
+
+function updateCategoryChart() {
+
+    const counts = {
+        "Fruits & Vegetables": 0,
+        "Dairy & Eggs": 0,
+        "Beverages": 0,
+        "Snacks & Confectionery": 0,
+        "Household Essentials": 0,
+        "Grains & Pulses": 0,
+        "Spices & Seasonings": 0
+    };
+
+    ItemModel.getAllItems().forEach(item => {
+        if (counts[item._category] !== undefined) {
+            counts[item._category]++;
+        }
+    });
+
+    const map = {
+        "Fruits & Vegetables": "#count-fruits",
+        "Dairy & Eggs": "#count-dairy",
+        "Beverages": "#count-beverages",
+        "Snacks & Confectionery": "#count-snacks",
+        "Household Essentials": "#count-household",
+        "Grains & Pulses": "#count-grains",
+        "Spices & Seasonings": "#count-spices"
+    };
+
+    $.each(map, function (category, selector) {
+        $(selector).text(counts[category]);
+    });
 }
 
 function clearFields() {
