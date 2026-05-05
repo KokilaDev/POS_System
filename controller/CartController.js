@@ -111,6 +111,12 @@ function loadCartTable() {
             </tr>
         `);
     });
+
+    $('.remove-btn').on("click", function () {
+       const code = $(this).data("id");
+       CartModel.removeFromCart(code);
+       loadCartTable();
+    });
 }
 
 function clearItemFields() {

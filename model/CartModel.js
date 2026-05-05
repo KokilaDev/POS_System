@@ -34,5 +34,12 @@ export const CartModel = {
 
     getAllItems() {
         return cart_db;
+    },
+
+    removeFromCart(item_code) {
+        const index = cart_db.findIndex(item => item._item_code === item_code);
+        if (index !== -1) {
+            cart_db.splice(index, 1);
+        }
     }
 }
