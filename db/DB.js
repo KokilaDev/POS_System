@@ -8,8 +8,8 @@ let customer_db = [
 
 let item_db = [
     { _item_code: "I001", _item_name: "Rice 1kg", _unit_price: 250.00, _qty_on_hand: 100, _category: "Grains & Pulses" },
-    { _item_code: "I002", _item_name: "Milk Packet", _unit_price: 120.00, _qty_on_hand: 50, _category: "Dairy & Eggs" },
-    { _item_code: "I003", _item_name: "Coca Cola 1L", _unit_price: 300.00, _qty_on_hand: 40, _category: "Beverages" },
+    { _item_code: "I002", _item_name: "Milk Packet", _unit_price: 120.00, _qty_on_hand: 3, _category: "Dairy & Eggs" },
+    { _item_code: "I003", _item_name: "Coca Cola 1L", _unit_price: 300.00, _qty_on_hand: 4, _category: "Beverages" },
     { _item_code: "I004", _item_name: "Biscuits Pack", _unit_price: 180.00, _qty_on_hand: 75, _category: "Snacks & Confectionery" },
     { _item_code: "I005", _item_name: "Chili Powder 100g", _unit_price: 90.00, _qty_on_hand: 60, _category: "Spices & Seasonings" }
 ];

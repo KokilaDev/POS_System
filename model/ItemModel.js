@@ -21,8 +21,8 @@ export const ItemModel = {
         if (!item) return;
         switch (colIndex) {
             case 1: item._item_name = value; break;
-            case 2: item._unit_price = value; break;
-            case 3: item._qty_on_hand = value; break;
+            case 2: item._unit_price = parseFloat(value); break;
+            case 3: item._qty_on_hand = parseInt(value); break;
             case 4: item._category = value; break;
         }
     },
@@ -33,5 +33,16 @@ export const ItemModel = {
 
     getAllItems() {
         return item_db;
+    },
+
+    getLowStockItems() {
+        return item_db.filter(item => {
+            console.log("Checking:", item._item_name, item._qty_on_hand, typeof item._qty_on_hand);
+
+            const qty = parseInt(item._qty_on_hand);
+            console.log("Parsed:", qty);
+
+            return !isNaN(qty) && qty < 5;
+        });
     }
 }

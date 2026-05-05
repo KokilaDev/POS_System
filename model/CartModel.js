@@ -1,4 +1,4 @@
-import { cart_db, order_db } from "../db/DB.js";
+import { cart_db, item_db, order_db } from "../db/DB.js";
 import CartDTO from "../dto/CartDTO.js";
 
 export const CartModel = {
@@ -51,5 +51,29 @@ export const CartModel = {
     clearCart() {
         cart_db.length = 0;
         return true;
+    },
+
+    checkout() {
+        cart_db.forEach(cartItem => {
+            let item = item_db.find(i => i._item_code === cartItem._item_code);
+
+            if (item) {
+                item._qty_on_hand = Number(item._qty_on_hand) - Number(cartItem._qty);
+                item._qty_on_hand = Math.max(0, item._qty_on_hand);
+            }
+        });
+
+        let order = {
+            order_id: this.generateOrderId(),
+            date: this.updateOrderDate(),
+            items: [...cart_db],
+            total: this.calculateTotal()
+        };
+
+        order_db.push(order);
+        this.clearCart();
+        console.log("AFTER CHECKOUT:", item_db);
+        $(document).trigger("orderPlaced");
+        return order;
     }
 }

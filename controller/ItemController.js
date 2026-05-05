@@ -1,8 +1,14 @@
-import {ItemModel} from "../model/ItemModel.js";
+import { ItemModel } from "../model/ItemModel.js";
 
 $(document).ready(function () {
     $('#itemId').text(ItemModel.generateItemCode());
     loadItemTable();
+    updateLowStockItems();
+});
+
+$(document).on("orderPlaced", function () {
+    loadItemTable();
+    updateLowStockItems();
 });
 
 $('.searchInput').on('keyup', function () {
@@ -62,8 +68,8 @@ $('#item_save_btn').on('click', function () {
 
 function saveItem() {
     let name = $('#itemName').val().trim();
-    let unitPrice = $('#unitPrice').val().trim();
-    let quantity = $('#quantity').val().trim();
+    let quantity = parseInt($('#quantity').val().trim());
+    let unitPrice = parseFloat($('#unitPrice').val().trim());
     let category = $('#category').val().trim();
 
     if (!name || !unitPrice || !quantity || !category) {
@@ -80,6 +86,7 @@ function saveItem() {
 
     ItemModel.addItem(name, unitPrice, quantity, category);
     $(document).trigger("itemAdded");
+    updateLowStockItems();
 
     Swal.fire({
         toast: true,
@@ -114,6 +121,7 @@ $('#item_tbody').on('keypress', '.edit', function (e) {
 
         ItemModel.updateItem(id, colIndex, newValue);
         $(document).trigger("itemUpdated");
+        updateLowStockItems();
         input.parent().text(newValue);
     }
 });
@@ -141,6 +149,7 @@ $('#item_tbody').on('click', '.item_delete_btn', function () {
             ItemModel.deleteItem(index);
             $(document).trigger("itemDeleted");
             loadItemTable();
+            updateLowStockItems();
 
             Swal.fire({
                 toast: true,
@@ -154,6 +163,44 @@ $('#item_tbody').on('click', '.item_delete_btn', function () {
         }
     });
 });
+
+function updateLowStockItems() {
+    console.log("updateLowStockItems called");
+    const allItems = ItemModel.getAllItems();
+
+    const $lowItemDiv = $('#low-item');
+    const $lowItemInfoDiv = $('#low-item-info');
+
+    $lowItemInfoDiv.removeClass(); // clear all classes
+
+    if (allItems.length === 0) {
+        $lowItemDiv.text("-");
+        $lowItemInfoDiv
+            .html(`<i class="fas fa-exclamation"></i><span> No products in stock</span>`)
+            .addClass("empty");
+        return;
+    }
+
+    const lowStockItems = ItemModel.getLowStockItems();
+    console.log("LOW STOCK:", lowStockItems);
+
+    if (lowStockItems.length === 0) {
+        $lowItemDiv.text("-");
+        $lowItemInfoDiv
+            .html(`<i class="fas fa-check"></i><span> All products in stock</span>`)
+            .addClass("normal");
+        return;
+    }
+
+    const minQtyItem = lowStockItems.reduce((prev, curr) => {
+        return curr._qty_on_hand < prev._qty_on_hand ? curr : prev;
+    });
+
+    $lowItemDiv.text(minQtyItem._item_code);
+    $lowItemInfoDiv
+        .html(`<i class="fas fa-arrow-down"></i><span> ${minQtyItem._qty_on_hand} - ${minQtyItem._item_name}</span>`)
+        .addClass("low");
+}
 
 function clearFields() {
     $('#itemId').text(ItemModel.generateItemCode());

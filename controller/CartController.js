@@ -150,12 +150,14 @@ $(document).ready(function () {
        CartModel.getAllItems().forEach(cartItem => {
            const item = item_db.find(i => i._item_code === cartItem._item_code);
            if (item) {
-               item._qty_on_hand -= cartItem._qty;
+               item._qty_on_hand = Number(item._qty_on_hand) - Number(cartItem._qty);
+
                if (item._qty_on_hand < 0) {
                    item._qty_on_hand = 0;
                }
            }
        });
+        $(document).trigger("orderPlaced");
 
        loadItemTable();
        loadOrderTable();
