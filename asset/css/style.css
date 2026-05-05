@@ -828,6 +828,7 @@ h1 {
     display: table;
     width: 100%;
     table-layout: fixed;
+    height: 20px;
 }
 
 .table thead {
@@ -848,11 +849,16 @@ h1 {
     border-bottom: 1px dashed rgba(255, 255, 255, 0.45);
     padding: 10px;
     text-align: left;
+    height: 50px;
+    vertical-align: middle;
 }
 
 .table td {
     border-bottom: 1px dashed rgba(255, 255, 255, 0.45);
     text-align: left;
+    height: 50px;
+    padding: 10px;
+    vertical-align: middle;
 }
 
 .table th {
@@ -1017,3 +1023,4 @@ h1 {
     width: 100px;
     text-align: center;
 }
+
