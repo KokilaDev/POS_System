@@ -22,7 +22,7 @@ function highlightRows(tbodySelector, searchValue) {
     });
 }
 
-function loadItemTable() {
+export function loadItemTable() {
     $('#item_tbody').empty();
     ItemModel.getAllItems().forEach((item, index) => {
         let row = `

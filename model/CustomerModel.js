@@ -4,7 +4,7 @@ import CustomerDTO from "../dto/CustomerDTO.js";
 export const CustomerModel = {
     generateCustomerId() {
         if (customer_db.length === 0) return "C001";
-        let lastId = customer_db[customer_db.length - 1].customer_id;
+        let lastId = customer_db[customer_db.length - 1]._customer_id;
         let num = parseInt(lastId.substring(1)) + 1;
         return "C" + String(num).padStart(3, "0");
     },
@@ -17,7 +17,7 @@ export const CustomerModel = {
     },
 
     updateCustomer(id, colIndex, value) {
-        let customer = customer_db.find(c => c.customer_id === id);
+        let customer = customer_db.find(c => c._customer_id === id);
         if (!customer) return;
         switch (colIndex) {
             case 1: customer._customer_name = value; break;

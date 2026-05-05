@@ -4,7 +4,7 @@ import ItemDTO from "../dto/ItemDTO.js";
 export const ItemModel = {
     generateItemCode() {
         if (item_db.length === 0) return "I001";
-        let lastId = item_db[item_db.length - 1].item_code;
+        let lastId = item_db[item_db.length - 1]._item_code;
         let num = parseInt(lastId.substring(1)) + 1;
         return "I" + String(num).padStart(3, "0");
     },
@@ -17,7 +17,7 @@ export const ItemModel = {
     },
 
     updateItem(id, colIndex, value) {
-        let item = item_db.find(i => i.item_code === id);
+        let item = item_db.find(i => i._item_code === id);
         if (!item) return;
         switch (colIndex) {
             case 1: item._item_name = value; break;

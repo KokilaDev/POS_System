@@ -1,7 +1,9 @@
 import { CartModel } from "../model/CartModel.js";
 import { CustomerModel } from "../model/CustomerModel.js";
 import { ItemModel } from "../model/ItemModel.js";
-import { item_db } from "../db/DB.js";
+import { customer_db, item_db, order_db } from "../db/DB.js";
+import OrderDTO from "../dto/OrderDTO.js";
+import { loadItemTable } from "./ItemController.js";
 
 $(document).ready(function () {
     $('#orderId').text(CartModel.generateOrderId());
@@ -48,6 +50,19 @@ $(document).ready(function () {
         }
     });
 
+    $('#cash').on("input", function () {
+        const cash = parseFloat($(this).val()) || 0;
+        const total = CartModel.calculateTotal();
+
+        if (cash < total) {
+            $('#balance').text("0.00");
+            $(this).addClass('error-border');
+        } else {
+            $('#balance').text((cash - total).toFixed(2));
+            $(this).removeClass('error-border');
+        }
+    });
+
     $('#add_to_cart_btn').on("click", function (event) {
         event.preventDefault();
 
@@ -83,10 +98,83 @@ $(document).ready(function () {
         }
 
         CartModel.addToCart(item_code, item_name, qty, price);
-
         loadCartTable();
         calculateTotal();
         clearItemFields();
+    });
+
+    $('#place_order_btn').on("click", function () {
+       const cash = parseFloat($('#cash').val());
+       const total = CartModel.calculateTotal();
+
+       if (isNaN(cash) || cash < total) {
+           Swal.fire({
+               toast: true,
+               position: 'top-end',
+               icon: 'warning',
+               title: 'Insufficient cash!',
+               showConfirmButton: false,
+               timer: 1500
+           });
+           return;
+       }
+
+       const balance = cash - total;
+       $('#balance').text(balance.toFixed(2));
+
+       const customerId = $('#selectCustomer').val();
+
+       if (!customerId) {
+           Swal.fire({
+               toast: true,
+               position: 'top-end',
+               icon: 'warning',
+               title: 'Please select customer!',
+               showConfirmButton: false,
+               timer: 1500
+           });
+           return;
+       }
+
+       const orderId = $('#orderId').text();
+       const orderDate = $('#orderDate').text();
+       const customer = customer_db.find(c => c._customer_id === customerId);
+
+       const newOrder = new OrderDTO(orderId, customer._customer_name, orderDate, total);
+       order_db.push(newOrder);
+
+       CartModel.getAllItems().forEach(cartItem => {
+           const item = item_db.find(i => i._item_code === cartItem._item_code);
+           if (item) {
+               item._qty_on_hand -= cartItem._qty;
+               if (item._qty_on_hand < 0) {
+                   item._qty_on_hand = 0;
+               }
+           }
+       });
+
+       loadItemTable();
+
+       CartModel.clearCart();
+       loadCartTable();
+       calculateTotal();
+
+       $('#cash').val("");
+       $('#selectCustomer').val("");
+       $('#balance').text("0.00");
+
+       Swal.fire({
+           toast: true,
+           position: 'top-end',
+           icon: 'success',
+           title: 'Order placed successfully!',
+           showConfirmButton: false,
+           timer: 2000,
+           timerProgressBar: true
+       });
+
+       $('#orderId').text(CartModel.generateOrderId());
+       $('#orderDate').text(CartModel.updateOrderDate());
     });
 });
 
@@ -139,6 +227,10 @@ function loadCartTable() {
 function calculateTotal() {
     const total = CartModel.calculateTotal();
     $('#total-amount').text(total.toFixed(2));
+
+    const cash = parseFloat($('#cash').val()) || 0;
+    const balance = cash - total;
+    $('#balance').text(balance >= 0 ? balance.toFixed(2) : "0.00");
 }
 
 function clearItemFields() {

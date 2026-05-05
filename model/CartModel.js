@@ -46,5 +46,9 @@ export const CartModel = {
 
     calculateTotal() {
         return cart_db.reduce((sum, item) => sum + item._total, 0);
+    },
+
+    clearCart() {
+        return cart_db;
     }
 }
