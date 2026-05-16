@@ -45,12 +45,17 @@ $(document).ready(function () {
 
         $('#total').val((qty * price).toFixed(2));
 
-        if (qty > qtyOnHand) {
-            $(this).addClass('error-border');
-            $('#qtyError').text('Not enough stock!');
+        if (qty >= 0) {
+            if (qty > qtyOnHand) {
+                $(this).addClass('error-border');
+                $('#qtyError').text('Not enough stock!');
+            } else {
+                $(this).removeClass('error-border');
+                $('#qtyError').text('');
+            }
         } else {
-            $(this).removeClass('error-border');
-            $('#qtyError').text('');
+            $(this).addClass('error-border');
+            $('#qtyError').text('Enter a valid quantity!');
         }
     });
 
